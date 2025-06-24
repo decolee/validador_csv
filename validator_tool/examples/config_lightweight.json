@@ -1,0 +1,41 @@
+{
+  "descricao": "Configuração otimizada para arquivos grandes com modo lightweight",
+  "arquivo_csv": {
+    "caminho": "./data/arquivo_grande.xlsx",
+    "delimitador": ";",
+    "encoding": "utf-8"
+  },
+  "arquivo_sql": {
+    "tipo": "sql_server",
+    "servidor": "localhost",
+    "database": "ProducaoDB",
+    "tabela": "tabela_destino",
+    "usuario": "user",
+    "senha": "password",
+    "autenticacao": "sql"
+  },
+  "arquivo_formulas": {
+    "caminho": "./data/arquivo_grande.xlsx",
+    "tipo": "auto_discovery",
+    "linha_amostra": 2,
+    "key_column": "ID",
+    "lightweight": true,
+    "max_cols": 50,
+    "_comentario": "Para arquivos muito grandes, especifique as colunas exatas:",
+    "columns_per_sheet": {
+      "Sheet1": ["A", "F", "K", "P", "T", "AA", "AF"],
+      "Sheet2": ["B", "G", "L", "Q"],
+      "Sheet3": ["C", "H", "M", "R"]
+    }
+  },
+  "tolerancia": {
+    "decimais": 0.01,
+    "percentual": 0.01,
+    "campos_ignorar": []
+  },
+  "mapeamento_campos": {},
+  "validacao": {
+    "amostra": 1000,
+    "_comentario": "Com lightweight, podemos processar amostras maiores"
+  }
+}

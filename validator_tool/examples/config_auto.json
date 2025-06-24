@@ -1,0 +1,48 @@
+{
+  "descricao": "Configuração com descoberta automática de fórmulas - ideal para arquivos com centenas de fórmulas",
+  "arquivo_csv": {
+    "caminho": "./data/planilha_complexa.xlsx",
+    "delimitador": ";",
+    "encoding": "utf-8"
+  },
+  "arquivo_sql": {
+    "tipo": "sql_server",
+    "servidor": "servidor.empresa.com",
+    "database": "ProducaoDB",
+    "tabela": "CalculosFinanceiros",
+    "usuario": "user_validacao",
+    "senha": "senha_segura",
+    "autenticacao": "sql"
+  },
+  "arquivo_formulas": {
+    "caminho": "./data/planilha_complexa.xlsx",
+    "tipo": "auto_discovery",
+    "linha_amostra": 2,
+    "key_column": "ID_CALCULO",
+    "max_cols": 500,
+    "descobrir_todas_abas": true
+  },
+  "tolerancia": {
+    "decimais": 0.01,
+    "percentual": 0.01,
+    "campos_ignorar": ["DATA_PROCESSAMENTO", "USUARIO_MODIFICACAO"],
+    "campos_especificos": {
+      "VALOR_MONETARIO": {
+        "tipo": "decimal",
+        "valor": 0.01
+      },
+      "TAXA_PERCENTUAL": {
+        "tipo": "percentual",
+        "valor": 0.001
+      }
+    }
+  },
+  "mapeamento_campos": {},
+  "validacao": {
+    "amostra": null,
+    "gerar_relatorio_html": true,
+    "incluir_detalhes": true,
+    "salvar_formulas_descobertas": true,
+    "arquivo_formulas_descobertas": "./output/formulas_descobertas.json"
+  }
+}

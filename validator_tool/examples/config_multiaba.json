@@ -1,0 +1,78 @@
+{
+  "descricao": "Configuração manual para múltiplas abas com controle fino sobre fórmulas",
+  "arquivo_csv": {
+    "caminho": "./data/beneficios.xlsx",
+    "delimitador": ";",
+    "encoding": "utf-8"
+  },
+  "arquivo_sql": {
+    "tipo": "sql_server",
+    "servidor": "localhost\\SQLEXPRESS",
+    "database": "BeneficiosDB",
+    "tabela": "CalculoBeneficios",
+    "usuario": "sa",
+    "senha": "Admin123!",
+    "autenticacao": "sql"
+  },
+  "arquivo_formulas": {
+    "caminho": "./data/beneficios.xlsx",
+    "tipo": "multi_abas",
+    "key_column": "ID_FUNCIONARIO",
+    "abas": {
+      "Beneficios": {
+        "aba_planilha": "Beneficios",
+        "formulas": [
+          {
+            "header_resultado": "VALOR_BENEFICIO",
+            "coluna": "F",
+            "formula_esperada": "=IF(K{row}=\"SIM\",C{row}*J{row}/100,0)",
+            "header_traducao": {
+              "C": "SALARIO_BASE",
+              "J": "PERCENTUAL_BENEFICIO",
+              "K": "ELEGIVEL"
+            }
+          },
+          {
+            "header_resultado": "DESCONTO_IRRF",
+            "coluna": "G",
+            "formula_esperada": "=VLOOKUP(C{row},TabelaIR!A:C,3,TRUE)*C{row}",
+            "header_traducao": {
+              "C": "SALARIO_BASE",
+              "TabelaIR!A": "FAIXA_INICIAL",
+              "TabelaIR!C": "ALIQUOTA"
+            }
+          }
+        ]
+      },
+      "Calculos": {
+        "aba_planilha": "Calculos",
+        "formulas": [
+          {
+            "header_resultado": "LIQUIDO_FINAL",
+            "coluna": "H",
+            "formula_esperada": "=Beneficios!C{row}+Beneficios!F{row}-Beneficios!G{row}",
+            "header_traducao": {
+              "Beneficios!C": "SALARIO_BASE",
+              "Beneficios!F": "VALOR_BENEFICIO",
+              "Beneficios!G": "DESCONTO_IRRF"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "tolerancia": {
+    "decimais": 0.02,
+    "percentual": 0.01,
+    "campos_ignorar": ["DATA_CALCULO"]
+  },
+  "mapeamento_campos": {
+    "ID_FUNC": "ID_FUNCIONARIO",
+    "SAL_BASE": "SALARIO_BASE"
+  },
+  "validacao": {
+    "amostra": 1000,
+    "gerar_relatorio_html": true,
+    "incluir_detalhes": true
+  }
+}

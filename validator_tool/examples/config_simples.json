@@ -1,0 +1,55 @@
+{
+  "descricao": "Configuração simples para validação básica com poucas fórmulas",
+  "arquivo_csv": {
+    "caminho": "./data/vendas.csv",
+    "delimitador": ",",
+    "encoding": "utf-8"
+  },
+  "arquivo_sql": {
+    "tipo": "sql_server",
+    "servidor": "localhost",
+    "database": "VendasDB",
+    "tabela": "VendasProcessadas",
+    "usuario": "app_user",
+    "senha": "app_password",
+    "autenticacao": "sql"
+  },
+  "arquivo_formulas": {
+    "caminho": "./regras/calculos_vendas.xlsx",
+    "aba_planilha": "Formulas",
+    "colunas_para_carregar": ["ID_VENDA", "F", "G", "H"],
+    "mapeamento_formulas": [
+      {
+        "header_resultado": "VALOR_LIQUIDO",
+        "header_traducao": {
+          "F": "VALOR_BRUTO",
+          "G": "DESCONTO",
+          "H": "TAXA"
+        }
+      }
+    ]
+  },
+  "colunas_para_validar": [
+    "VALOR_BRUTO",
+    "DESCONTO",
+    "VALOR_LIQUIDO",
+    "COMISSAO"
+  ],
+  "regras_de_tolerancia": {
+    "VALOR_LIQUIDO": {
+      "tipo": "decimal",
+      "casas_decimais": 2
+    },
+    "COMISSAO": {
+      "tipo": "percentual",
+      "valor": 0.01
+    },
+    "default": {
+      "tipo": "exata"
+    }
+  },
+  "arquivo_saida": {
+    "caminho": "./output/relatorio_vendas.xlsx",
+    "formato": "excel"
+  }
+}

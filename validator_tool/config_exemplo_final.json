@@ -1,0 +1,54 @@
+{
+  "arquivo_fonte_1": {
+    "caminho": "./data/dados_producao.xlsx",
+    "aba_planilha": "Producao",
+    "coluna_chave": "ID_CALCULO"
+  },
+  "arquivo_fonte_2": {
+    "caminho": "./data/dados_sql_simulados.csv",
+    "aba_planilha": null,
+    "coluna_chave": "ID_CALCULO"
+  },
+  "arquivo_formulas": {
+    "caminho": "./data/dados_producao_original.xlsx",
+    "tipo": "auto_discovery",
+    "linha_amostra": 2,
+    "key_column": "ID_CALCULO"
+  },
+  "colunas_para_validar": [
+    "SUBTOTAL",
+    "VALOR_DESCONTO", 
+    "VALOR_LIQUIDO",
+    "VALOR_IMPOSTO",
+    "VALOR_TOTAL",
+    "STATUS_CALCULO"
+  ],
+  "regras_de_tolerancia": {
+    "SUBTOTAL": {
+      "tipo": "decimal",
+      "casas_decimais": 2
+    },
+    "VALOR_DESCONTO": {
+      "tipo": "decimal", 
+      "casas_decimais": 2
+    },
+    "VALOR_LIQUIDO": {
+      "tipo": "decimal",
+      "casas_decimais": 2
+    },
+    "VALOR_IMPOSTO": {
+      "tipo": "decimal",
+      "casas_decimais": 2
+    },
+    "VALOR_TOTAL": {
+      "tipo": "decimal",
+      "casas_decimais": 2
+    },
+    "default": {
+      "tipo": "exata"
+    }
+  },
+  "arquivo_saida": {
+    "caminho": "./output/relatorio_validacao_exemplo.xlsx"
+  }
+}
